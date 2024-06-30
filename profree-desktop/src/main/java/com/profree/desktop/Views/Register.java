@@ -5,7 +5,11 @@
 package com.profree.desktop.Views;
 
 import com.formdev.flatlaf.FlatClientProperties;
+import com.profree.desktop.Controllers.Otentikasi;
+import com.profree.desktop.Models.Akun;
 import java.beans.PropertyVetoException;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
@@ -54,7 +58,7 @@ public class Register extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
         sandi = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        daftar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         masuk = new javax.swing.JLabel();
@@ -94,10 +98,15 @@ public class Register extends javax.swing.JInternalFrame {
 
         sandi.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 255));
-        jButton1.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Masuk");
+        daftar.setBackground(new java.awt.Color(0, 102, 255));
+        daftar.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        daftar.setForeground(new java.awt.Color(255, 255, 255));
+        daftar.setText("Daftar");
+        daftar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                daftarActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
         jLabel4.setText("Profree");
@@ -124,6 +133,7 @@ public class Register extends javax.swing.JInternalFrame {
         jLabel7.setText("Jenis Akun");
 
         LakiLaki.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        LakiLaki.setSelected(true);
         LakiLaki.setText("Laki - Laki");
 
         Perempuan.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
@@ -136,6 +146,7 @@ public class Register extends javax.swing.JInternalFrame {
         ProjectManager.setText("Project Manager");
 
         Freelancer.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        Freelancer.setSelected(true);
         Freelancer.setText("Freelancer");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -165,7 +176,7 @@ public class Register extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(Perempuan))
                             .addComponent(jLabel8)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(daftar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
@@ -208,7 +219,7 @@ public class Register extends javax.swing.JInternalFrame {
                     .addComponent(Freelancer)
                     .addComponent(ProjectManager))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(daftar)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -255,6 +266,25 @@ public class Register extends javax.swing.JInternalFrame {
         Main.konten.add(login);
     }//GEN-LAST:event_masukMouseClicked
 
+    private void daftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_daftarActionPerformed
+        // TODO add your handling code here:
+        String nama_format = Arrays.stream(nama.getText().split("\\s+")).map(word -> Character.toUpperCase(word.charAt(0)) + word.substring(1)).collect(Collectors.joining(" "));
+        
+        String jk = "laki-laki";
+        String ja = "freelancer";
+        
+        if (Perempuan.isSelected()) {
+            jk = "perempuan";
+        }
+        
+        if (ProjectManager.isSelected()) {
+            ja = "project manager";
+        }
+        
+        Akun pengguna = new Akun(email.getText(), sandi.getText(), nama_format, jk, ja);
+        Otentikasi.Daftar(pengguna);
+    }//GEN-LAST:event_daftarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton Freelancer;
@@ -263,8 +293,8 @@ public class Register extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton LakiLaki;
     private javax.swing.JRadioButton Perempuan;
     private javax.swing.JRadioButton ProjectManager;
+    private javax.swing.JButton daftar;
     private javax.swing.JTextField email;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

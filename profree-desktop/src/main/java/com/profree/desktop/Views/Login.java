@@ -5,6 +5,9 @@
 package com.profree.desktop.Views;
 
 import com.formdev.flatlaf.FlatClientProperties;
+import com.profree.desktop.Controllers.Otentikasi;
+import com.profree.desktop.Models.Akun;
+import com.profree.desktop.Models.Database;
 import java.beans.PropertyVetoException;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
@@ -24,7 +27,10 @@ public class Login extends javax.swing.JInternalFrame {
             BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
             bi.setNorthPane(null);
             sandi.putClientProperty( FlatClientProperties.STYLE, "showRevealButton: true" );
-        } catch (PropertyVetoException e) {}
+            Database.Sambungkan();
+        } catch (Exception e) {
+            System.out.println("Kesalahan : " + e.getMessage());
+        }
     }
 
     /**
@@ -45,7 +51,7 @@ public class Login extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
         sandi = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        masuk = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         daftar = new javax.swing.JLabel();
@@ -77,13 +83,13 @@ public class Login extends javax.swing.JInternalFrame {
 
         sandi.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 255));
-        jButton1.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Masuk");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        masuk.setBackground(new java.awt.Color(0, 102, 255));
+        masuk.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        masuk.setForeground(new java.awt.Color(255, 255, 255));
+        masuk.setText("Masuk");
+        masuk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                masukActionPerformed(evt);
             }
         });
 
@@ -114,7 +120,7 @@ public class Login extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2)
                     .addComponent(email)
                     .addComponent(sandi)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(masuk, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addComponent(jLabel5)
@@ -140,7 +146,7 @@ public class Login extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sandi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
-                .addComponent(jButton1)
+                .addComponent(masuk)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -187,19 +193,16 @@ public class Login extends javax.swing.JInternalFrame {
         Main.konten.add(register);
     }//GEN-LAST:event_daftarMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void masukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masukActionPerformed
         // TODO add your handling code here:
-        Main.konten.removeAll();
-        Dashboard dashboard = new Dashboard();
-        dashboard.setVisible(true);
-        Main.konten.add(dashboard);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        Akun pengguna = new Akun(email.getText(), sandi.getText());
+        Otentikasi.Masuk(pengguna);
+    }//GEN-LAST:event_masukActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel daftar;
     private javax.swing.JTextField email;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -209,6 +212,7 @@ public class Login extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JButton masuk;
     private javax.swing.JPasswordField sandi;
     // End of variables declaration//GEN-END:variables
 }

@@ -18,7 +18,7 @@ public class Database {
     
     public static void Sambungkan() throws Exception {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        conn = DriverManager.getConnection("jdbc:mysql://serverku.my.id/UAS","publik", "123");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost/profree","root", "");
     }
     
     public static Connection Sambungan() {

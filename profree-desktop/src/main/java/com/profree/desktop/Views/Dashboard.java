@@ -5,7 +5,10 @@
 package com.profree.desktop.Views;
 
 import com.formdev.flatlaf.FlatClientProperties;
+import com.profree.desktop.Controllers.Otentikasi;
+import com.profree.desktop.Models.Akun;
 import java.beans.PropertyVetoException;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
@@ -157,6 +160,11 @@ public class Dashboard extends javax.swing.JInternalFrame {
         jButton1.setText("Keluar");
         jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -291,6 +299,15 @@ public class Dashboard extends javax.swing.JInternalFrame {
         programerTerbaik.setVisible(true);
         Halaman.add(programerTerbaik);
     }//GEN-LAST:event_ProgramerTerbaikActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int pilihan = JOptionPane.showConfirmDialog(this, "Apakah anda yakin ingin keluar?", "Konformasi", JOptionPane.YES_NO_OPTION);
+
+        if (pilihan == JOptionPane.YES_OPTION) {
+            Otentikasi.Keluar();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
