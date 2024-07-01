@@ -31,4 +31,22 @@ public class DataPilihan {
         
         return daftar;
     }
+    
+    public static ArrayList<String> getDaftarBahasa() {
+        ArrayList<String> daftar = new ArrayList<>();
+        
+        try {
+            Database data = new Database();
+            
+            ResultSet jenis = data.Eksekusi("SELECT bahasa FROM bahasa_manusia");
+            
+            while (jenis.next()) {
+                daftar.add(jenis.getString("bahasa"));
+            }
+        } catch (Exception e) {
+            System.out.println("Kesalahan : " + e.getMessage());
+        }
+        
+        return daftar;
+    }
 }

@@ -152,6 +152,59 @@ public class DataAkun {
         }
     }
     
+    public static DuaData getKomunikasi(){
+        
+        DuaData isi = new DuaData();
+        
+        ArrayList<String> daftar_bahasa = new ArrayList<>();
+        ArrayList<Integer> daftar_id = new ArrayList<>();
+        
+        try {
+            Database data = new Database();
+            ResultSet bicara = data.Eksekusi("SELECT komunikasi.id as id, bahasa_manusia.bahasa as bahasa FROM komunikasi INNER JOIN bahasa_manusia ON bahasa_manusia.id = bahasa_manusia_id WHERE komunikasi.pengguna_id = " + Akun.getId());
+            while (bicara.next()) {
+                daftar_bahasa.add(bicara.getString("bahasa"));
+                daftar_id.add(bicara.getInt("id"));
+            }
+        } catch (Exception e) {
+            System.out.println("Kesalahan : " + e.getMessage());
+        }
+        
+        isi = new DuaData(daftar_id, daftar_bahasa);
+        
+        return isi;
+    }
+    
+    public static void tambahBahasa(int id_bahasa){
+        try {
+            Database data = new Database();
+            data.SetData("INSERT INTO komunikasi (pengguna_id, bahasa_manusia_id) VALUES ("+Akun.getId()+", "+id_bahasa+")");
+            JOptionPane.showMessageDialog(null, "Berhasil menyimpan data yang anda buat!", "Menambah Bahasa", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            System.out.println("Kesalahan : " + e.getMessage());
+        }
+    }
+    
+    public static void hapusBahasa(int id){
+        try {
+            Database data = new Database();
+            data.SetData("DELETE FROM komunikasi WHERE id = " + id);
+            JOptionPane.showMessageDialog(null, "Berhasil menghapus item!", "Hapus Bahasa", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            System.out.println("Kesalahan : " + e.getMessage());
+        }
+    }
+    
+    public static void gantibahasa(int id, int id_bahasa){
+         try {
+            Database data = new Database();
+            data.SetData("UPDATE komunikasi SET bahasa_manusia_id = "+id_bahasa+" WHERE id = " + id);
+            JOptionPane.showMessageDialog(null, "Berhasil menyimpan perubahan yang anda buat!", "Ubah Bahasa", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            System.out.println("Kesalahan : " + e.getMessage());
+        }
+    }
+    
     public static DuaData getKantor(){
         
         DuaData isi = new DuaData();

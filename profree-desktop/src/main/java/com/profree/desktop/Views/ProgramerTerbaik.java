@@ -4,7 +4,9 @@
  */
 package com.profree.desktop.Views;
 
+import com.profree.desktop.Controllers.DataPilihan;
 import java.beans.PropertyVetoException;
+import java.util.ArrayList;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
@@ -23,6 +25,20 @@ public class ProgramerTerbaik extends javax.swing.JInternalFrame {
             BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
             bi.setNorthPane(null);
         } catch (PropertyVetoException e) {}
+        
+         ArrayList<String> produk = DataPilihan.getDaftar("jenis_produk");
+        ArrayList<String> bahasa = DataPilihan.getDaftar("bahasa_pemograman");
+        
+        for (String nama : produk) {
+            jproduk.addItem(nama);
+        }
+        
+        for (String nama : bahasa) {
+            jbahasa.addItem(nama);
+        }
+        
+        jproduk.setSelectedIndex(-1);
+        jbahasa.setSelectedIndex(-1);
     }
 
     /**
@@ -39,9 +55,9 @@ public class ProgramerTerbaik extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        jbahasa = new javax.swing.JComboBox<>();
+        jproduk = new javax.swing.JComboBox<>();
+        cari = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
@@ -72,17 +88,17 @@ public class ProgramerTerbaik extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         jLabel4.setText("Bahasa");
 
-        jComboBox1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        jbahasa.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
 
-        jComboBox2.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        jproduk.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 255));
-        jButton1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Cari");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        cari.setBackground(new java.awt.Color(0, 102, 255));
+        cari.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        cari.setForeground(new java.awt.Color(255, 255, 255));
+        cari.setText("Cari");
+        cari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                cariActionPerformed(evt);
             }
         });
 
@@ -243,13 +259,13 @@ public class ProgramerTerbaik extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jproduk, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbahasa, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1))
+                        .addComponent(cari))
                     .addComponent(jScrollPane1))
                 .addGap(17, 17, 17))
         );
@@ -261,10 +277,10 @@ public class ProgramerTerbaik extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jproduk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jbahasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cari))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
@@ -292,16 +308,14 @@ public class ProgramerTerbaik extends javax.swing.JInternalFrame {
         freelancer.setVisible(true);
     }//GEN-LAST:event_jPanel3MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_cariActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup JenisKelamin;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JButton cari;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -321,5 +335,7 @@ public class ProgramerTerbaik extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> jbahasa;
+    private javax.swing.JComboBox<String> jproduk;
     // End of variables declaration//GEN-END:variables
 }

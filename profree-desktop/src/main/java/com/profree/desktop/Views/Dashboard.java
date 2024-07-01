@@ -26,6 +26,7 @@ public class Dashboard extends javax.swing.JInternalFrame {
         ProgramerTerbaik.putClientProperty( FlatClientProperties.STYLE, "selectedBackground:#FDFFFC" );
         Riwayat.putClientProperty( FlatClientProperties.STYLE, "selectedBackground:#FDFFFC" );
         Kantor.putClientProperty( FlatClientProperties.STYLE, "selectedBackground:#FDFFFC" );
+        Komunikasi.putClientProperty( FlatClientProperties.STYLE, "selectedBackground:#FDFFFC" );
         Kemampuan.putClientProperty( FlatClientProperties.STYLE, "selectedBackground:#FDFFFC" );
         LamanLabuh.putClientProperty( FlatClientProperties.STYLE, "selectedBackground:#FDFFFC" );
         DataDiri.putClientProperty( FlatClientProperties.STYLE, "selectedBackground:#FDFFFC" );
@@ -68,6 +69,7 @@ public class Dashboard extends javax.swing.JInternalFrame {
         DataDiri = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        Komunikasi = new javax.swing.JToggleButton();
         Halaman = new javax.swing.JDesktopPane();
 
         setBorder(null);
@@ -166,6 +168,18 @@ public class Dashboard extends javax.swing.JInternalFrame {
             }
         });
 
+        Komunikasi.setBackground(new java.awt.Color(0, 102, 255));
+        Komunikasi.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        Komunikasi.setForeground(new java.awt.Color(255, 255, 255));
+        Komunikasi.setText("Komunikasi");
+        Komunikasi.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        Komunikasi.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Komunikasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KomunikasiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -185,7 +199,10 @@ public class Dashboard extends javax.swing.JInternalFrame {
                             .addComponent(Kantor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Kemampuan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(LamanLabuh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(DataDiri, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(DataDiri, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Komunikasi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -199,6 +216,8 @@ public class Dashboard extends javax.swing.JInternalFrame {
                 .addComponent(Riwayat)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Kantor)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Komunikasi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Kemampuan)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -309,12 +328,21 @@ public class Dashboard extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void KomunikasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KomunikasiActionPerformed
+        // TODO add your handling code here:
+        Halaman.removeAll();
+        Komunikasi komunikasi = new Komunikasi();
+        komunikasi.setVisible(true);
+        Halaman.add(komunikasi);
+    }//GEN-LAST:event_KomunikasiActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton DataDiri;
     private javax.swing.JDesktopPane Halaman;
     private javax.swing.JToggleButton Kantor;
     private javax.swing.JToggleButton Kemampuan;
+    private javax.swing.JToggleButton Komunikasi;
     private javax.swing.JToggleButton LamanLabuh;
     private javax.swing.ButtonGroup Menu;
     private javax.swing.JToggleButton ProgramerTerbaik;
