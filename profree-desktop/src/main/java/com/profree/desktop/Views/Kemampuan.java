@@ -4,7 +4,12 @@
  */
 package com.profree.desktop.Views;
 
+import com.profree.desktop.Controllers.DataAkun;
+import com.profree.desktop.Controllers.DataPilihan;
+import com.profree.desktop.Models.DuaData;
 import java.beans.PropertyVetoException;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
@@ -23,6 +28,34 @@ public class Kemampuan extends javax.swing.JInternalFrame {
             BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
             bi.setNorthPane(null);
         } catch (PropertyVetoException e) {}
+        
+        updateKemampuan();
+    }
+    
+    public static void updateKemampuan(){
+        ArrayList<String> produk = DataPilihan.getDaftar("jenis_produk");
+        ArrayList<String> bahasa = DataPilihan.getDaftar("bahasa_pemograman");
+        
+        for (String nama : produk) {
+            jproduk.addItem(nama);
+        }
+        
+        for (String nama : bahasa) {
+            jbahasa.addItem(nama);
+        }
+        
+        jproduk.setSelectedIndex(-1);
+        jbahasa.setSelectedIndex(-1);
+        
+        DuaData kemampuan = DataAkun.getKemampuan();
+        
+        DefaultListModel<String> data = new DefaultListModel<>();
+        
+        for (String skill : kemampuan.getData2()) {
+            data.addElement(skill);
+        }
+        
+        daftar_kemampuan.setModel(data);
     }
 
     /**
@@ -35,38 +68,43 @@ public class Kemampuan extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        tambah = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        daftar_kemampuan = new javax.swing.JList<>();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jproduk = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jbahasa = new javax.swing.JComboBox<>();
+        hapus = new javax.swing.JButton();
+        edit = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 102, 255));
         setBorder(null);
 
         jPanel1.setBackground(new java.awt.Color(253, 255, 252));
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 255));
-        jButton1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Tambah");
+        tambah.setBackground(new java.awt.Color(0, 102, 255));
+        tambah.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        tambah.setForeground(new java.awt.Color(255, 255, 255));
+        tambah.setText("Tambah");
+        tambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tambahActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         jLabel2.setText("Daftar kemampuan");
 
-        jList1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        jScrollPane1.setViewportView(jList1);
+        daftar_kemampuan.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        jScrollPane1.setViewportView(daftar_kemampuan);
 
         jLabel3.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         jLabel3.setText("Tambah Kemampuan");
 
-        jComboBox1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        jproduk.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         jLabel4.setText("Jenis Produk");
@@ -74,17 +112,27 @@ public class Kemampuan extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         jLabel5.setText("Bahasa Pemograman");
 
-        jComboBox2.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        jbahasa.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
 
-        jButton2.setBackground(new java.awt.Color(255, 0, 0));
-        jButton2.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Hapus");
+        hapus.setBackground(new java.awt.Color(255, 0, 0));
+        hapus.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        hapus.setForeground(new java.awt.Color(255, 255, 255));
+        hapus.setText("Hapus");
+        hapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hapusActionPerformed(evt);
+            }
+        });
 
-        jButton3.setBackground(new java.awt.Color(255, 204, 0));
-        jButton3.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Edit");
+        edit.setBackground(new java.awt.Color(255, 204, 0));
+        edit.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        edit.setForeground(new java.awt.Color(255, 255, 255));
+        edit.setText("Edit");
+        edit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -94,23 +142,23 @@ public class Kemampuan extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton3)
+                        .addComponent(edit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2))
+                        .addComponent(hapus))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel3)
                         .addComponent(jLabel2)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
+                            .addComponent(tambah)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel5))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBox2, 0, 175, Short.MAX_VALUE)
-                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(jbahasa, 0, 175, Short.MAX_VALUE)
+                                    .addComponent(jproduk, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -122,20 +170,20 @@ public class Kemampuan extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(hapus)
+                    .addComponent(edit))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jproduk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbahasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(tambah)
                 .addGap(22, 22, 22))
         );
 
@@ -153,19 +201,41 @@ public class Kemampuan extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
+        // TODO add your handling code here:
+        DataAkun.tambahKemampuan(jproduk.getSelectedIndex()+1, jbahasa.getSelectedIndex()+1);
+        jproduk.setSelectedIndex(-1);
+        jbahasa.setSelectedIndex(-1);
+        updateKemampuan();
+    }//GEN-LAST:event_tambahActionPerformed
+
+    private void hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusActionPerformed
+        // TODO add your handling code here:
+        DuaData kemampuan = DataAkun.getKemampuan();
+        DataAkun.hapusKemampuan(kemampuan.getData1().get(daftar_kemampuan.getSelectedIndex()));
+        updateKemampuan();
+    }//GEN-LAST:event_hapusActionPerformed
+
+    private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
+        // TODO add your handling code here:
+        DuaData kemampuan = DataAkun.getKemampuan();
+        EditKemampuan ganti = new EditKemampuan(null, true, kemampuan.getData1().get(daftar_kemampuan.getSelectedIndex()), daftar_kemampuan.getSelectedValue());
+        ganti.setVisible(true);
+    }//GEN-LAST:event_editActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private static javax.swing.JList<String> daftar_kemampuan;
+    private javax.swing.JButton edit;
+    private javax.swing.JButton hapus;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private static javax.swing.JComboBox<String> jbahasa;
+    private static javax.swing.JComboBox<String> jproduk;
+    private javax.swing.JButton tambah;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,10 +9,20 @@ package com.profree.desktop.Models;
  */
 public class Akun {
     public static int id;
-    private String email, sandi, nama, jenis_kelamin, jenis_akun, domisili, jumlah_projek, pengalaman;
-    private int biaya_perjam;
+    private String email, sandi, nama, jenis_kelamin, jenis_akun, domisili;
+    private int jumlah_projek, pengalaman, biaya_perjam;
     
     public Akun() {}
+
+    public Akun(String email, String nama, String jenis_kelamin, String domisili, int jumlah_projek, int pengalaman, int biaya_perjam) {
+        this.email = email;
+        this.nama = nama;
+        this.jenis_kelamin = jenis_kelamin;
+        this.domisili = domisili;
+        this.jumlah_projek = jumlah_projek;
+        this.pengalaman = pengalaman;
+        this.biaya_perjam = biaya_perjam;
+    }
     
     public Akun(String email, String sandi, String nama, String jenis_kelamin, String jenis_akun){
         this.email = email;
@@ -55,11 +65,11 @@ public class Akun {
         return domisili;
     }
 
-    public String getJumlah_projek() {
+    public int getJumlah_projek() {
         return jumlah_projek;
     }
 
-    public String getPengalaman() {
+    public int getPengalaman() {
         return pengalaman;
     }
 

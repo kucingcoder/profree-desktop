@@ -4,7 +4,12 @@
  */
 package com.profree.desktop.Views;
 
+import com.profree.desktop.Controllers.DataAkun;
+import com.profree.desktop.Controllers.DataPilihan;
+import com.profree.desktop.Models.DuaData;
 import java.beans.PropertyVetoException;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
@@ -23,6 +28,29 @@ public class Kantor extends javax.swing.JInternalFrame {
             BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
             bi.setNorthPane(null);
         } catch (PropertyVetoException e) {}
+        
+        updateKantor();
+    }
+    
+    public static void updateKantor(){
+        ArrayList<String> platform = DataPilihan.getDaftar("platform");
+        
+        for (String nama : platform) {
+            jplatform.addItem(nama);
+        }
+        
+        jplatform.setSelectedIndex(-1);
+        jprofil.setText("");
+        
+        DuaData tempat_kerja = DataAkun.getKantor();
+        
+        DefaultListModel<String> data = new DefaultListModel<>();
+        
+        for (String kerja : tempat_kerja.getData2()) {
+            data.addElement(kerja);
+        }
+        
+        daftar_kantor.setModel(data);
     }
 
     /**
@@ -35,13 +63,13 @@ public class Kantor extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        jprofil = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        daftar_kantor = new javax.swing.JList<>();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jplatform = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -51,23 +79,28 @@ public class Kantor extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(253, 255, 252));
 
-        jTextField1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        jprofil.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
 
         jButton1.setBackground(new java.awt.Color(0, 102, 255));
         jButton1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Tambah");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         jLabel2.setText("Daftar Platform Freelance Anda");
 
-        jList1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        jScrollPane1.setViewportView(jList1);
+        daftar_kantor.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        jScrollPane1.setViewportView(daftar_kantor);
 
         jLabel3.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         jLabel3.setText("Tambah Platform Freelance");
 
-        jComboBox1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        jplatform.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         jLabel4.setText("Platform");
@@ -79,11 +112,21 @@ public class Kantor extends javax.swing.JInternalFrame {
         jButton2.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Hapus");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(255, 204, 0));
         jButton3.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Edit");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -103,9 +146,9 @@ public class Kantor extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel5))
                             .addGap(18, 18, 18)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField1)
+                                .addComponent(jprofil)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jplatform, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(0, 0, Short.MAX_VALUE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton3)
@@ -129,11 +172,11 @@ public class Kantor extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jplatform, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jprofil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addGap(22, 22, 22))
@@ -153,19 +196,41 @@ public class Kantor extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        DataAkun.tambahKantor(jplatform.getSelectedIndex()+1, jprofil.getText());
+        jplatform.setSelectedIndex(-1);
+        jprofil.setText("");
+        updateKantor();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        DuaData tempat_kerja = DataAkun.getKantor();
+        DataAkun.hapusKantor(tempat_kerja.getData1().get(daftar_kantor.getSelectedIndex()));
+        updateKantor();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        DuaData tempat_kerja = DataAkun.getKantor();
+        EditKantor ganti = new EditKantor(null, true, tempat_kerja.getData1().get(daftar_kantor.getSelectedIndex()), daftar_kantor.getSelectedValue());
+        ganti.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private static javax.swing.JList<String> daftar_kantor;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private static javax.swing.JComboBox<String> jplatform;
+    private static javax.swing.JTextField jprofil;
     // End of variables declaration//GEN-END:variables
 }
