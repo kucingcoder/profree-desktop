@@ -24,7 +24,6 @@ public class Dashboard extends javax.swing.JInternalFrame {
         initComponents();
         
         ProgramerTerbaik.putClientProperty( FlatClientProperties.STYLE, "selectedBackground:#FDFFFC" );
-        Riwayat.putClientProperty( FlatClientProperties.STYLE, "selectedBackground:#FDFFFC" );
         Kantor.putClientProperty( FlatClientProperties.STYLE, "selectedBackground:#FDFFFC" );
         Komunikasi.putClientProperty( FlatClientProperties.STYLE, "selectedBackground:#FDFFFC" );
         Kemampuan.putClientProperty( FlatClientProperties.STYLE, "selectedBackground:#FDFFFC" );
@@ -32,8 +31,8 @@ public class Dashboard extends javax.swing.JInternalFrame {
         DataDiri.putClientProperty( FlatClientProperties.STYLE, "selectedBackground:#FDFFFC" );
         
         Menu.add(ProgramerTerbaik);
-        Menu.add(Riwayat);
         Menu.add(Kantor);
+        Menu.add(Komunikasi);
         Menu.add(Kemampuan);
         Menu.add(LamanLabuh);
         Menu.add(DataDiri);
@@ -62,7 +61,6 @@ public class Dashboard extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         ProgramerTerbaik = new javax.swing.JToggleButton();
-        Riwayat = new javax.swing.JToggleButton();
         Kantor = new javax.swing.JToggleButton();
         Kemampuan = new javax.swing.JToggleButton();
         LamanLabuh = new javax.swing.JToggleButton();
@@ -88,18 +86,6 @@ public class Dashboard extends javax.swing.JInternalFrame {
         ProgramerTerbaik.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ProgramerTerbaikActionPerformed(evt);
-            }
-        });
-
-        Riwayat.setBackground(new java.awt.Color(0, 102, 255));
-        Riwayat.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        Riwayat.setForeground(new java.awt.Color(255, 255, 255));
-        Riwayat.setText("RIwayat");
-        Riwayat.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        Riwayat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        Riwayat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RiwayatActionPerformed(evt);
             }
         });
 
@@ -192,17 +178,16 @@ public class Dashboard extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
+                        .addComponent(ProgramerTerbaik, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ProgramerTerbaik, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                            .addComponent(Riwayat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Kantor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Kemampuan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(LamanLabuh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(DataDiri, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Komunikasi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(DataDiri, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Komunikasi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -212,8 +197,6 @@ public class Dashboard extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(ProgramerTerbaik)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Riwayat)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Kantor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -303,14 +286,6 @@ public class Dashboard extends javax.swing.JInternalFrame {
         Halaman.add(dataDiri);
     }//GEN-LAST:event_DataDiriActionPerformed
 
-    private void RiwayatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RiwayatActionPerformed
-        // TODO add your handling code here:
-        Halaman.removeAll();
-        Riwayat riwayat = new Riwayat();
-        riwayat.setVisible(true);
-        Halaman.add(riwayat);
-    }//GEN-LAST:event_RiwayatActionPerformed
-
     private void ProgramerTerbaikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProgramerTerbaikActionPerformed
         // TODO add your handling code here:
         Halaman.removeAll();
@@ -346,7 +321,6 @@ public class Dashboard extends javax.swing.JInternalFrame {
     private javax.swing.JToggleButton LamanLabuh;
     private javax.swing.ButtonGroup Menu;
     private javax.swing.JToggleButton ProgramerTerbaik;
-    private javax.swing.JToggleButton Riwayat;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

@@ -21,7 +21,7 @@ public class DataAkun {
         Akun pengguna = new Akun();
         try {
             Database data = new Database();
-            ResultSet akun = data.Eksekusi("SELECT nama, jenis_kelamin_id, domisili, email, projek, pengalaman, biaya_perjam FROM pengguna WHERE id = " + Akun.getId());
+            ResultSet akun = data.Eksekusi("SELECT nama, jenis_kelamin_id, domisili, email, projek, pengalaman FROM pengguna WHERE id = " + Akun.getId());
             if (akun.next()) {
                 String gender = "laki-laki";
                 
@@ -29,7 +29,7 @@ public class DataAkun {
                     gender = "perempuan";    
                 }
                 
-                pengguna = new Akun(akun.getString("email"), akun.getString("nama"), gender, akun.getString("domisili"), akun.getInt("projek"), akun.getInt("pengalaman"), akun.getInt("biaya_perjam"));
+                pengguna = new Akun(akun.getString("email"), akun.getString("nama"), gender, akun.getString("domisili"), akun.getInt("projek"), akun.getInt("pengalaman"));
             }
         } catch (Exception e) {
             System.out.println("Kesalahan : " + e.getMessage());
@@ -48,7 +48,7 @@ public class DataAkun {
                 id_jk = 2;
             }
             
-            data.SetData("UPDATE pengguna set nama = '"+pengguna.getNama()+"', jenis_kelamin_id="+id_jk+", domisili = '"+pengguna.getDomisili()+"', email = '"+pengguna.getEmail()+"', projek = "+pengguna.getJumlah_projek()+", pengalaman = "+pengguna.getPengalaman()+", biaya_perjam = "+pengguna.getBiaya_perjam()+" WHERE id = " + Akun.getId());
+            data.SetData("UPDATE pengguna set nama = '"+pengguna.getNama()+"', jenis_kelamin_id="+id_jk+", domisili = '"+pengguna.getDomisili()+"', email = '"+pengguna.getEmail()+"', projek = "+pengguna.getJumlah_projek()+", pengalaman = "+pengguna.getPengalaman()+" WHERE id = " + Akun.getId());
             
             JOptionPane.showMessageDialog(null, "Berhasil menyimpan perubahan yang anda buat!", "Data Diri Diperbaharui", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {

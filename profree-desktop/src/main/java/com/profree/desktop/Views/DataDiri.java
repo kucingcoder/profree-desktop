@@ -44,7 +44,6 @@ public class DataDiri extends javax.swing.JInternalFrame {
         email.setText(pengguna.getEmail());
         projek.setText(String.valueOf(pengguna.getJumlah_projek()));
         pengalaman.setText(String.valueOf(pengguna.getPengalaman()));
-        biaya.setText(String.valueOf(pengguna.getBiaya_perjam()));
     }
 
     /**
@@ -65,11 +64,9 @@ public class DataDiri extends javax.swing.JInternalFrame {
         projek = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         pengalaman = new javax.swing.JTextField();
-        biaya = new javax.swing.JTextField();
         email = new javax.swing.JTextField();
         domisili = new javax.swing.JTextField();
         nama = new javax.swing.JTextField();
@@ -114,9 +111,6 @@ public class DataDiri extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         jLabel7.setText("Pengalaman");
 
-        jLabel8.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        jLabel8.setText("Biaya");
-
         jLabel9.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         jLabel9.setText("Jenis Kelamin");
 
@@ -124,8 +118,6 @@ public class DataDiri extends javax.swing.JInternalFrame {
         jLabel10.setText("Email");
 
         pengalaman.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-
-        biaya.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
 
         email.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
 
@@ -189,7 +181,7 @@ public class DataDiri extends javax.swing.JInternalFrame {
                                         .addComponent(Perempuan))
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(0, 161, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
@@ -204,14 +196,10 @@ public class DataDiri extends javax.swing.JInternalFrame {
                                     .addComponent(nama)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(projek)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGap(18, 18, 18)
                                         .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(pengalaman)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(biaya, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(pengalaman))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(domisili)
                                         .addGap(18, 18, 18)
@@ -245,9 +233,7 @@ public class DataDiri extends javax.swing.JInternalFrame {
                     .addComponent(jLabel6)
                     .addComponent(projek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(pengalaman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(biaya, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pengalaman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addGap(13, 13, 13)
@@ -287,13 +273,15 @@ public class DataDiri extends javax.swing.JInternalFrame {
             gender = "perempuan";
         }
         
-        Akun pengguna = new Akun(email.getText(), nama.getText(), gender, domisili.getText(), Integer.valueOf(projek.getText()), Integer.valueOf(pengalaman.getText()), Integer.valueOf(biaya.getText()));
+        Akun pengguna = new Akun(email.getText(), nama.getText(), gender, domisili.getText(), Integer.valueOf(projek.getText()), Integer.valueOf(pengalaman.getText()));
         DataAkun.updateDataDiri(pengguna);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         DataAkun.gantiSandi(sandi_lama.getText(), sandi_baru.getText());
+        sandi_lama.setText("");
+        sandi_baru.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
@@ -301,7 +289,6 @@ public class DataDiri extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup JenisKelamin;
     private javax.swing.JRadioButton LakiLaki;
     private javax.swing.JRadioButton Perempuan;
-    private javax.swing.JTextField biaya;
     private javax.swing.JTextField domisili;
     private javax.swing.JTextField email;
     private javax.swing.JButton jButton1;
@@ -315,7 +302,6 @@ public class DataDiri extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nama;
