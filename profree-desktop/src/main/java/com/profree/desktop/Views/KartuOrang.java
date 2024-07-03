@@ -4,17 +4,23 @@
  */
 package com.profree.desktop.Views;
 
+import com.profree.desktop.Controllers.DataAkun;
+
 /**
  *
  * @author Hanif
  */
 public class KartuOrang extends javax.swing.JPanel {
+    final private int id;
+    final private String programer;
 
     /**
      * Creates new form KartuOrang
      */
-    public KartuOrang() {
+    public KartuOrang(int id, String nama) {
         initComponents();
+        this.id = id;
+        this.programer = nama;
     }
 
     /**
@@ -32,6 +38,12 @@ public class KartuOrang extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(253, 255, 252));
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 255), 3, true));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         nama.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         nama.setForeground(new java.awt.Color(0, 102, 255));
@@ -68,6 +80,13 @@ public class KartuOrang extends javax.swing.JPanel {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        // TODO add your handling code here:
+        String deskripsi = DataAkun.getDeskripsi(id);
+        Freelancer popup = new Freelancer(null, true, deskripsi, programer);
+        popup.setVisible(true);
+    }//GEN-LAST:event_formMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

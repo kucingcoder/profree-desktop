@@ -89,6 +89,23 @@ public class DataAkun {
         return deskripsi;
     }
     
+    public static String getDeskripsi(int id){
+        String deskripsi = "";
+        
+        try {
+            Database data = new Database();
+            
+            ResultSet akun = data.Eksekusi("SELECT deskripsi FROM pengguna WHERE id = " + id);
+            if (akun.next()) {
+                deskripsi = akun.getString("deskripsi");
+            }
+        } catch (Exception e) {
+            System.out.println("Kesalahan : " + e.getMessage());
+        }
+        
+        return deskripsi;
+    }
+    
     public static void updateDeskripsi(String deskripsi){
         try {
             Database data = new Database();

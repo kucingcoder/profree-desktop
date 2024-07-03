@@ -13,16 +13,16 @@ import org.commonmark.renderer.html.HtmlRenderer;
  * @author Hanif
  */
 public class Freelancer extends javax.swing.JDialog {
+    private String markdown;
 
     /**
      * Creates new form Freelancer
      */
-    public Freelancer(java.awt.Frame parent, boolean modal) {
+    public Freelancer(java.awt.Frame parent, boolean modal, String deskripsi, String nama) {
         super(parent, modal);
         initComponents();
-        
-        String markdown = "## Contoh Markdown\n" +
-                          "Ini adalah *contoh* **teks** dalam format [Markdown](https://en.wikipedia.org/wiki/Markdown).";
+        this.setTitle(nama);
+        markdown = deskripsi;
         Parser parser = Parser.builder().build();
         Node document = parser.parse(markdown);
         HtmlRenderer renderer = HtmlRenderer.builder().build();
@@ -47,6 +47,7 @@ public class Freelancer extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nama Programer");
         setAlwaysOnTop(true);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(253, 255, 252));
 
@@ -63,15 +64,15 @@ public class Freelancer extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

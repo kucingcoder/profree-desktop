@@ -169,7 +169,7 @@ public class ProgramerTerbaik extends javax.swing.JInternalFrame {
         ArrayList<Alternatif> daftar_orang = SPK.CariTerbaik(jproduk.getSelectedIndex()+1, jbahasa.getSelectedIndex()+1);
         
         for (Alternatif orang : daftar_orang){
-            KartuOrang alternatif = new KartuOrang();
+            KartuOrang alternatif = new KartuOrang(orang.getId(), orang.getNama());
             alternatif.nama.setText(orang.getNama());
             alternatif.pengalaman.setText("Pengalaman " + (int)orang.getPengalaman() + " Tahun");
             alternatif.projek.setText((int)orang.getProjek() + " Projek telah dikerjakan");
